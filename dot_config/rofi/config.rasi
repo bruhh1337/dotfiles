@@ -167,4 +167,6 @@ configuration {
   }
 }
 
-@theme "minimal"
+//@theme "minimal"
+
+@theme "/home/kaon/.config/rofi/themes/simple-tokyonight.rasi"
