@@ -3,7 +3,7 @@
 # starship init fish | source
 set fish_greeting
 
-set -Ux EDITOR helix
+set -Ux EDITOR nvim
 
 # block, line, underscore
 set fish_cursor_default underscore

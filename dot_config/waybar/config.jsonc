@@ -1,77 +1,78 @@
-
 {
-    "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 22, // Waybar height (to be removed for auto height)
-    "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["pulseaudio", "network", "backlight","cpu","memory","battery", "battery#bat2", "clock", "tray"],
-    "hyprland/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    }, 
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "tray": {
-        "spacing": 10
-    },
-    "clock": {
-        "format": "{:%H:%M }",
-        "format-alt": "{:%Y-%m-%d}",
-	"tooltip": false
-      
-    },
-    "cpu": {
-        "format": "  {usage}% "
-    },
-    "memory": {
-        "format": "  {}% "
-    },
-    "temperature": {
-        "critical-threshold": 80,
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        "format": "{icon}  {percent}% ",
-        "format-icons": ["󰃜", "󰃛", ""]
-    	//"format-icons": ["","","",""],
-    },
-    "battery": {
-    	"bat": "BAT0",
-    	"states": {
-        	"full": 99,
-        	"good": 98,
-        	"normal": 98,
-        	"warning": 20,
-        	"critical": 20
-	},
-    	"format": "{icon}  {capacity}%",
-    	"format-good": "{icon}  {capacity}%", 
-    	"format-full": "  {capacity}%",
-    	"format-icons": ["", "", "", "", ""],
-    	"interval": 30
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interfac
-        "format-wifi": "  {essid} ({signalStrength}%)",
-        "format-ethernet": "󰈀  {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "󰖪  Disconnected",
-        "format-alt": "{ipaddr}/{cidr}"
-    },
-    "pulseaudio": {
-        "format": "  {volume}% {format_source}",
-        "format-bluetooth": " {volume}% {format_source}",
-        "format-bluetooth-muted": "󰂲 {format_source}",
-        "format-muted": "󰝟  {format_source}",
-        "format-source": "",
-        "format-source-muted": " "
+  "position": "bottom",
+  "spacing": 0,
+  "height": 0,
+  "reload_style_on_change": true,
+  "layer": "top",
+  "custom/separator": {
+    "format": "::",
+    "interval": "once",
+    "tooltip": false
+  },
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/mode"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "tray",
+    "cpu",
+    "custom/separator",
+    "memory",
+    "custom/separator",
+    "battery",
+    "custom/separator",
+    "clock"
+  ],
+  "hyprland/window": {
+    "max-length": 50
+  },
+  "tray": {
+    "spacing": 10,
+    "tooltip": false
+  },
+  "cpu": {
+    "format": "cpu {usage}%",
+    "interval": 2,
+    "states": {
+      "critical": 90
     }
+  },
+  "memory": {
+    "format": "mem {percentage}%",
+    "interval": 2,
+    "states": {
+      "critical": 80
+    }
+  },
+  "battery": {
+    "format": "bat {capacity}%",
+    "interval": 5,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "tooltip": false
+  },
+  "network": {
+    "format-wifi": "wifi {bandwidthDownBits}",
+    "format-ethernet": "enth {bandwidthDownBits}",
+    "format-disconnected": "no network",
+    "interval": 5,
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "scroll-step": 5,
+    "max-volume": 150,
+    "format": "vol {volume}%",
+    "format-bluetooth": "vol {volume}%",
+    "nospacing": 1,
+    "on-click": "pavucontrol",
+    "tooltip": false
+  },
+  "clock": {
+    "format": "{:%a %d %b  %H:%M:%S}"
+  }
 }

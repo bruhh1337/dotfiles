@@ -1122,7 +1122,7 @@ mouse_hide_wait -3.0
 #: insensitive, from the set 0-9A-Z\-=[];',./\\`. Specify your
 #: preference as a string of characters.
 
-# confirm_os_window_close -1
+confirm_os_window_close 0
 
 #: Ask for confirmation when closing an OS window or a tab with at
 #: least this number of kitty windows in it by window manager (e.g.
@@ -2796,6 +2796,6 @@ bold_italic_font auto
 # END_KITTY_FONTS
 
 # BEGIN_KITTY_THEME
-# Adapta Nokto Maia
+# Gruvbox Dark
 include current-theme.conf
 # END_KITTY_THEME
