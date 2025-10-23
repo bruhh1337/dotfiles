@@ -43,3 +43,7 @@ function y
     end
     rm -f -- "$tmp"
 end
+
+# disable mode indicator
+function fish_mode_prompt
+end

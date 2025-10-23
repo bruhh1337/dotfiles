@@ -10,11 +10,11 @@
     "tooltip": false
   },
   "modules-left": [
-    "hyprland/workspaces",
-    "hyprland/mode"
+    "dwl/tags"
+    // "dwl/window"
   ],
   "modules-center": [
-    "hyprland/window"
+    "dwl/window"
   ],
   "modules-right": [
     "tray",
@@ -26,7 +26,13 @@
     "custom/separator",
     "clock"
   ],
-  "hyprland/window": {
+  "dwl/tags": {
+    "disable-unused": true,
+    // "num-tags": 9,
+    "hide-vacant": true
+    // "tag-labels": ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  },
+  "dwl/window": {
     "max-length": 50
   },
   "tray": {
@@ -34,7 +40,7 @@
     "tooltip": false
   },
   "cpu": {
-    "format": "cpu {usage}%",
+    "format": "cpu {load}%",
     "interval": 2,
     "states": {
       "critical": 90

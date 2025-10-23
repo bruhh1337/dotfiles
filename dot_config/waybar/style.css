@@ -8,12 +8,12 @@
 }
 
 window#waybar {
-  background: #202020;
-  color: #9b8d7f;
+  background: #000000;
+  color: #C1C1C1;
 }
 
 tooltip {
-  background-color: #202020;
+  background-color: #000000;
 }
 
 #clock,
@@ -27,22 +27,22 @@ tooltip {
   padding: 2px 8px;
 }
 
-#workspaces button {
-  color: #9b8d7f;
+#tags button {
+  color: #C1C1C1;
 }
 
 
-#workspaces button.focused {
-  background-color: #9b8d7f;
-  color: #202020;
+#tags button.focused {
+  background-color: #79241F;
+  color: #000000;
 }
 
-#workspaces button.active {
-  background-color: #202020;
-  color: #9b8d7f;
+#tags button.active {
+  background-color: #000000;
+  color: #C1C1C1;
 }
 
 #battery, #tray, #clock, #cpu, #pulseaudio, #memory {
   /* background-color: none; */
-  color: #9b8d7f;
+  color: #C1C1C1;
 }
