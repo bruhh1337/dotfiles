@@ -27,20 +27,36 @@ tooltip {
   padding: 2px 8px;
 }
 
-#tags button {
+#workspaces button {
   color: #C1C1C1;
 }
 
-
-#tags button.focused {
+#workspaces button.active {
   background-color: #79241F;
   color: #000000;
 }
 
-#tags button.active {
-  background-color: #000000;
-  color: #C1C1C1;
+@keyframes blink {
+  to {
+    background-color: #000000;
+    color: #000000;
+  }
 }
+
+#workspaces button.urgent {
+  background-color: #79241F;
+  color: #000000;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* #workspaces button.active { */ /* fuck you for the pain and suffering*/
+/*   background-color: #000000; */
+/*   color: #C1C1C1; */
+/* } */
 
 #battery, #tray, #clock, #cpu, #pulseaudio, #memory {
   /* background-color: none; */

@@ -44,10 +44,13 @@ if vim.fn.isdirectory(undodir) == 0 then
   vim.fn.mkdir(undodir, "p")
 end
 
--- vim.diagnostic.config({
--- 	virtual_text = true, -- Enable inline diagnostics
--- 	signs = true,       -- Show signs in the gutter
--- 	underline = true,   -- Underline problematic code
--- 	update_in_insert = false, -- Disable live update in insert mode
--- 	severity_sort = true,
--- })
+vim.opt.fillchars =
+{ vert = " ", horiz = " ", horizup = " ", horizdown = " ", vertleft = " ", vertright = " ", verthoriz = " " }
+
+vim.diagnostic.config({
+  virtual_text = true,
+  -- signs = true,
+  -- underline = true,
+  -- update_in_insert = false,
+  -- severity_sort = true,
+})

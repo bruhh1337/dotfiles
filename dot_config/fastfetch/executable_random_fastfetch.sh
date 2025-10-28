@@ -10,4 +10,4 @@ LOGO_FILES=($(ls $LOGO_DIR))
 RANDOM_LOGO=${LOGO_FILES[$RANDOM % ${#LOGO_FILES[@]}]}
 
 # Run fastfetch with the selected logo
-fastfetch --kitty "$LOGO_DIR/$RANDOM_LOGO" --logo-height 20 --logo-padding-left 4 --logo-padding-top 2
+fastfetch --sixel "$LOGO_DIR/$RANDOM_LOGO" --logo-height 20 --logo-padding-left 4 --logo-padding-top 2

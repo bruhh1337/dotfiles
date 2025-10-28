@@ -10,6 +10,8 @@ return {
         "lua",
         "markdown",
         "scala",
+        "python",
+        "bash",
       },
       highlight = {
         enable = true,

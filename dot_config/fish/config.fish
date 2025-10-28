@@ -11,6 +11,7 @@ set fish_cursor_default underscore
 set -gx PATH /opt/intellij/bin $PATH
 set -gx PATH /home/kaon/.cargo/bin $PATH
 set -gx PATH /home/kaon/.local/share/coursier/bin $PATH
+set -gx PATH /home/kaon/.local/bin $PATH
 
 set -gx ELECTRON_OZONE_PLATFORM_HINT auto
 
