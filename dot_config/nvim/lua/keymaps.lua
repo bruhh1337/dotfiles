@@ -10,18 +10,18 @@ map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
 -- move line up/down
-map('n', '<A-j>', ':m .+1<CR>==', { noremap = true, silent = true })
-map('n', '<A-k>', ':m .-2<CR>==', { noremap = true, silent = true })
-map('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-map('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+map('n', '<A-j>', ':m .+1<CR>==', {})
+map('n', '<A-k>', ':m .-2<CR>==', {})
+map('v', '<A-j>', ":m '>+1<CR>gv-gv", {})
+map('v', '<A-k>', ":m '<-2<CR>gv-gv", {})
 
 -- better indent
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- holy based
-map({ "n", "v", "x" }, ";", ":", { desc = "Self explanatory" })
-map({ "n", "v", "x" }, ":", ";", { desc = "Self explanatory" })
+-- map({ "n", "v", "x" }, ";", ":", { desc = "Self explanatory" })
+-- map({ "n", "v", "x" }, ":", ";", { desc = "Self explanatory" })
 
 -- use system clipboard
 map({ "n", "x" }, "<leader>y", '"+y', { desc = "Copy to system clipboard" })
@@ -50,9 +50,9 @@ map({ "n" }, "<leader>Q", "<Cmd>:wqa<CR>", { desc = "Quit all buffers and write.
 map({ "n" }, "<leader>o", "<Cmd>source %<CR>", { desc = "Source " .. vim.fn.expand("$MYVIMRC") })
 map({ "n" }, "<leader>O", "<Cmd>:Lazy reload<CR>", { desc = "Restart vim" })
 
-map("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Enter substitue mode with word" })
-map({ "n", "v", "v" }, "<leader>s", [[:s/\V]], { desc = "Enter substitue mode in selection" })
-map("n", "<Esc>", "<Esc>:nohlsearch<CR>", { desc = "Clear highlight" })
+map("n", "<leader>R", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Enter substitue mode with word" })
+map("v", "<leader>r", [[:s/\V]], { desc = "Enter substitue mode in selection" })
+-- map("n", "<Esc>", "<Esc>:nohlsearch<CR>", { desc = "Clear highlight" })
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 map({ "n", "v", "x" }, "<leader>n", ":norm", { desc = "norm" })
 

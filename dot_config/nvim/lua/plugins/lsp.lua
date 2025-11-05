@@ -25,5 +25,6 @@ return {
         }
       }
     }
-  })
+  }),
+  vim.lsp.config("marksman", {})
 }
