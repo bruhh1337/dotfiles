@@ -2,6 +2,7 @@
 # VERSION: 3.0
 SETUVAR --export EDITOR:nvim
 SETUVAR --export --path PATH:/home/kaon/\x2ecargo/bin\x1e/usr/local/sbin\x1e/usr/local/bin\x1e/usr/bin\x1e/usr/lib/jvm/default/bin\x1e/usr/bin/site_perl\x1e/usr/bin/vendor_perl\x1e/usr/bin/core_perl\x1e/opt/idea\x2dcommunity/bin
+SETUVAR --export QT_SCALE_FACTOR:0\x2e75
 SETUVAR Z_CMD:j
 SETUVAR Z_DATA_DIR:/home/kaon/\x2elocal/share/z
 SETUVAR __fish_initialized:3800

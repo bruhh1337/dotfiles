@@ -4,6 +4,7 @@
 set fish_greeting
 
 set -Ux EDITOR nvim
+set -Ux QT_SCALE_FACTOR 0.75
 
 # block, line, underscore
 set fish_cursor_default underscore
