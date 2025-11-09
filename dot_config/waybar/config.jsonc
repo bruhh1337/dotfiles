@@ -10,8 +10,8 @@
     "tooltip": false
   },
   "modules-left": [
-    "ext/workspaces"
-    // "dwl/tags"
+    // "ext/workspaces"
+    "dwl/tags"
     // "dwl/window"
   ],
   "modules-center": [
@@ -27,10 +27,11 @@
     "custom/separator",
     "clock"
   ],
-  "ext/workspaces": {
+  "dwl/tags": {
     // "disable-unused": true,
     "num-tags": 9,
     "hide-vacant": true,
+    // "disable-click": true,
     "tag-labels": ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
   },
   "dwl/window": {

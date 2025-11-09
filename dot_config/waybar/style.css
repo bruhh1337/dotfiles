@@ -27,11 +27,15 @@ tooltip {
   padding: 2px 8px;
 }
 
-#workspaces button {
+#tags button {
   color: #C1C1C1;
 }
 
-#workspaces button.active {
+#tags button.occupied {
+  color: #C1C1C1;
+}
+
+#tags button.focused {
   background-color: #79241F;
   color: #000000;
 }
@@ -43,7 +47,7 @@ tooltip {
   }
 }
 
-#workspaces button.urgent {
+#tags button.urgent {
   background-color: #79241F;
   color: #000000;
   animation-name: blink;
