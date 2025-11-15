@@ -4,9 +4,15 @@
                         ((hex >> 8) & 0xFF) / 255.0f, \
                         (hex & 0xFF) / 255.0f }
 /* appearance */
-static const int sloppyfocus               = 1;  /* focus follows mouse */
+static const int sloppyfocus               = 0;  /* focus follows mouse */
 static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
+static const int smartgaps                 = 0;  /* 1 means no outer gap when there is only one window */
+static const int monoclegaps               = 0;  /* 1 means outer gaps in monocle layout */
 static const unsigned int borderpx         = 1;  /* border pixel of windows */
+static const unsigned int gappih           = 10; /* horiz inner gap between windows */
+static const unsigned int gappiv           = 10; /* vert inner gap between windows */
+static const unsigned int gappoh           = 10; /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov           = 10; /* vert outer gap between windows and screen edge */
 static const float rootcolor[]             = COLOR(0x222222ff);
 static const float bordercolor[]           = COLOR(0x000000ff);
 static const float focuscolor[]            = COLOR(0x595959ff);
@@ -120,6 +126,8 @@ LIBINPUT_CONFIG_TAP_MAP_LMR -- 1/2/3 finger tap maps to left/middle/right
 */
 static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TAP_MAP_LRM;
 
+static const int cursor_timeout = 5;
+
 /* If you want to use the windows key for MODKEY, use WLR_MODIFIER_LOGO */
 #define MODKEY WLR_MODIFIER_LOGO
 #define ALT WLR_MODIFIER_ALT
@@ -127,8 +135,8 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 #define TAGKEYS(KEY,SKEY,TAG) \
 	{ MODKEY,                    KEY,            view,            {.ui = 1 << TAG} }, \
 	{ MODKEY|WLR_MODIFIER_CTRL, KEY,            toggleview,      {.ui = 1 << TAG} }, \
-	{ MODKEY|WLR_MODIFIER_SHIFT, SKEY,            tag,             {.ui = 1 << TAG} }, \
-	{ MODKEY|WLR_MODIFIER_CTRL|WLR_MODIFIER_SHIFT,SKEY,toggletag, {.ui = 1 << TAG} }
+	{ MODKEY|WLR_MODIFIER_SHIFT, SKEY,            tag,             {.ui = 1 << TAG} }//, \
+	// { MODKEY|WLR_MODIFIER_CTRL|WLR_MODIFIER_SHIFT,SKEY,toggletag, {.ui = 1 << TAG} }
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -142,25 +150,49 @@ static const char *filebrowser[] = { "foot", "yazi", NULL };
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
+  // apps
 	{ MODKEY,                    XKB_KEY_r,          spawn,          {.v = menucmd} },
   { MODKEY,                    XKB_KEY_q,          spawn,          {.v = termcmd} },
   { MODKEY,                    XKB_KEY_f,          spawn,          {.v = browser} },
   { MODKEY,                    XKB_KEY_e,          spawn,          {.v = filebrowser} },
+  // focus
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
-	{ MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
-	{ MODKEY,                    XKB_KEY_d,          incnmaster,     {.i = -1} },
 	{ MODKEY,                    XKB_KEY_h,          setmfact,       {.f = -0.05f} },
 	{ MODKEY,                    XKB_KEY_l,          setmfact,       {.f = +0.05f} },
-	{ ALT,                       XKB_KEY_1,          setlayout,      {.v = &layouts[0]} },
-	{ ALT,                       XKB_KEY_2,          setlayout,      {.v = &layouts[1]} },
-	{ ALT,                       XKB_KEY_3,          setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                    XKB_KEY_u,          movestack,      {.i = +1} },
+	{ MODKEY,                    XKB_KEY_i,          movestack,      {.i = -1} },
+  // change layout (kinda)
+	{ MODKEY,                    XKB_KEY_o,          incnmaster,     {.i = +1} },
+	{ MODKEY,                    XKB_KEY_p,          incnmaster,     {.i = -1} },
+  // resize
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Down,       moveresizekb,   {.v = (int []){ 0, 40, 0, 0 }}},
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Up,         moveresizekb,   {.v = (int []){ 0, -40, 0, 0 }}},
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Right,      moveresizekb,   {.v = (int []){ 40, 0, 0, 0 }}},
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Left,       moveresizekb,   {.v = (int []){ -40, 0, 0, 0 }}},
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_Down,       moveresizekb,   {.v = (int []){ 0, 0, 0, 40 }}},
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_Up,         moveresizekb,   {.v = (int []){ 0, 0, 0, -40 }}},
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_Right,      moveresizekb,   {.v = (int []){ 0, 0, 40, 0 }}},
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_Left,       moveresizekb,   {.v = (int []){ 0, 0, -40, 0 }}},
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_J,          moveresizekb,   {.v = (int []){ 0, 40, 0, 0 }}},
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_K,          moveresizekb,   {.v = (int []){ 0, -40, 0, 0 }}},
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_L,          moveresizekb,   {.v = (int []){ 40, 0, 0, 0 }}},
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_H,          moveresizekb,   {.v = (int []){ -40, 0, 0, 0 }}},
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_j,          moveresizekb,   {.v = (int []){ 0, 0, 0, 40 }}},
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_k,          moveresizekb,   {.v = (int []){ 0, 0, 0, -40 }}},
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_l,          moveresizekb,   {.v = (int []){ 0, 0, 40, 0 }}},
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_h,          moveresizekb,   {.v = (int []){ 0, 0, -40, 0 }}},
+	{ MODKEY|ALT,                XKB_KEY_t,          setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ALT,                XKB_KEY_f,          setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ALT,                XKB_KEY_m,          setlayout,      {.v = &layouts[2]} },
   { ALT,                       XKB_KEY_w,          killclient,     {0} },
   { ALT,                       XKB_KEY_u,          togglefloating, {0} },
-  { ALT,                       XKB_KEY_a,          togglefakefullscreen, {0} },
 	{ ALT,                       XKB_KEY_f,          togglefullscreen,{0} },
+	{ ALT,                       XKB_KEY_s,          togglesticky,{0} },
 	{ ALT,                       XKB_KEY_n,          spawn,           SHCMD("screenlock.sh") },
 	{ ALT,                       XKB_KEY_d,          spawn,           SHCMD("makoctl dismiss") },
+	{ MODKEY|ALT,                XKB_KEY_S,          spawn,           SHCMD("screenshot.sh") },
+	{ MODKEY|ALT|WLR_MODIFIER_CTRL, XKB_KEY_S,      spawn,           SHCMD("hyprpicker -a") },
 	{ ALT,                       XKB_KEY_m,          quit,           {0} },
 	{ ALT,                       XKB_KEY_Tab,        view,           {.ui = ~0} },
 	{ ALT,                       XKB_KEY_Return,     zoom,           {.ui = ~0} },
