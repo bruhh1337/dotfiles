@@ -4,6 +4,7 @@
 set fish_greeting
 
 set -Ux EDITOR nvim
+set -Ux SYSTEMD_EDITOR nvim
 
 # block, line, underscore
 set fish_cursor_default underscore

@@ -30,14 +30,14 @@
 )
 
 (defalias
-  aM (tap-hold 000 180 a lmet)
-  ;M (tap-hold 000 180 ; rmet)
-  sA (tap-hold 000 180 s lalt)
-  lA (tap-hold 000 180 l lalt)
-  dC (tap-hold 000 180 d lctl)
-  kC (tap-hold 000 180 k lctl)
-  fS (tap-hold 000 180 f lsft)
-  jS (tap-hold 000 180 j lsft)
+  aM (tap-hold 000 200 a lmet)
+  ;M (tap-hold 000 200 ; rmet)
+  sA (tap-hold 000 200 s lalt)
+  lA (tap-hold 000 200 l lalt)
+  dC (tap-hold 000 200 d lctl)
+  kC (tap-hold 000 200 k lctl)
+  fS (tap-hold 000 200 f lsft)
+  jS (tap-hold 000 200 j lsft)
   lNav(layer-toggle Nav)
 )
 

@@ -3,6 +3,7 @@
 SETUVAR --export EDITOR:nvim
 SETUVAR --export --path PATH:/home/kaon/\x2ecargo/bin\x1e/usr/local/sbin\x1e/usr/local/bin\x1e/usr/bin\x1e/usr/lib/jvm/default/bin\x1e/usr/bin/site_perl\x1e/usr/bin/vendor_perl\x1e/usr/bin/core_perl\x1e/opt/idea\x2dcommunity/bin
 SETUVAR --export QT_SCALE_FACTOR:0\x2e75
+SETUVAR --export SYSTEMD_EDITOR:nvim
 SETUVAR Z_CMD:j
 SETUVAR Z_DATA_DIR:/home/kaon/\x2elocal/share/z
 SETUVAR __fish_initialized:3800
@@ -14,6 +15,7 @@ SETUVAR _fisher_nickeb96_2F_puffer_2D_fish_files:\x7e/\x2econfig/fish/functions/
 SETUVAR _fisher_plugins:jorgebucaran/fisher\x1emeaningful\x2dooo/sponge\x1ejorgebucaran/autopair\x2efish\x1enickeb96/puffer\x2dfish\x1ejorgebucaran/hydro
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR _hydro_git_11658:main\u2022\x20
+SETUVAR _hydro_git_131664:main\u2022\x20
 SETUVAR _hydro_git_1339:main\u2022\x20
 SETUVAR _hydro_git_1349:main\u2022\x20
 SETUVAR _hydro_git_1375:\x1d
@@ -27,6 +29,9 @@ SETUVAR _hydro_git_17270:main\u2022\x20
 SETUVAR _hydro_git_1855:main\u2022\x20
 SETUVAR _hydro_git_2197:main\u2022\x20
 SETUVAR _hydro_git_25029:\x1d
+SETUVAR _hydro_git_2679:main\u2022\x20
+SETUVAR _hydro_git_33984:main\u2022\x20
+SETUVAR _hydro_git_3771:\x1d
 SETUVAR _hydro_git_6006:main\u2022\x20
 SETUVAR _hydro_git_61025:\x1d
 SETUVAR fish_color_autosuggestion:brblack
