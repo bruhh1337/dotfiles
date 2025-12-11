@@ -50,3 +50,10 @@ end
 # disable mode indicator
 function fish_mode_prompt
 end
+
+# pnpm
+set -gx PNPM_HOME "/home/kaon/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
